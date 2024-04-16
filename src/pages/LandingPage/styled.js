@@ -10,4 +10,12 @@ export const Container = styled.div`
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+
+  article.exchange-rate-result = {
+    border: 1px solid red;
+  }
+
+  .active {
+    font-weight: 800;
+  }
 `;
