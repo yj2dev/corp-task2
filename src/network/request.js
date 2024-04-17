@@ -19,7 +19,6 @@ export const getRate = async (from, to, amount) => {
       },
     )
     .then((res) => {
-      console.log("res >> ", res);
       return {
         amount: res.data.result,
         from: res.data.query.from,

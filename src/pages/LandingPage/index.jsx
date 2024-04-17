@@ -37,11 +37,13 @@ const LandingPage = () => {
     const rate = isRate(selectFrom, selectTo);
 
     if (rate === undefined) {
+      console.log("환율 정보 없어서 요청");
       if (loading) return;
       setLoading(true);
       runGetRate();
       setLoading(false);
     } else {
+      console.log("환율 정보 있음");
     }
   };
 
