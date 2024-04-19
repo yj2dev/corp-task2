@@ -1,14 +1,6 @@
 import axios from "axios";
 
 export const getRate = async (from, to, amount) => {
-  // return {
-  //   amount: 0.000755,
-  //   from: "KRW",
-  //   to: "USD",
-  //   date: "2024-04-17",
-  //   rate: 0.000755,
-  // };
-
   return axios
     .get(
       `https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`,

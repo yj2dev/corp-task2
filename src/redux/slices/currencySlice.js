@@ -19,31 +19,17 @@ const currencySlice = createSlice({
     setRateLog(state, action) {
       const { amount, from, to, date, rate } = action.payload;
 
-      console.log("redux >> ", amount, from, to, date, rate);
-
       return produce(state, (draft) => {
-        // if (!draft.rateLog[from]) {
-        //   draft.rateLog[from] = {};
-        // }
+        if (!draft.rateLog[from]) {
+          draft.rateLog[from] = {};
+        }
 
-        // if (draft.rateLog[from][to] !== undefined) {
-        draft.rateLog[from][to] = rate;
-        draft.baseDate = date;
-        // }
+        try {
+          if (!draft.rateLog[from].hasOwnProperty(to)) {
+            draft.rateLog[from] = { [to]: rate };
+          }
+        } catch (err) {}
       });
-
-      // if (!rate) {
-      //   getExchangeRate(from, to, amount)
-      //     .then(({ baseDate, fromCurrency, toCurrency, rate }) => {
-      //       return produce(state, (draftState) => {
-      //         draftState.rateLog[fromCurrency][toCurrency] = rate;
-      //         draftState.baseDate = baseDate;
-      //       });
-      //     })
-      //     .catch((error) => {
-      //       console.error(error);
-      //     });
-      // }
     },
   },
 });

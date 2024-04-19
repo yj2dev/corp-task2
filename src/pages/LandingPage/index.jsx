@@ -16,8 +16,6 @@ const LandingPage = () => {
   const [selectFrom, setSelectFrom] = useState(currencyState.currencyList[2]);
   const [selectTo, setSelectTo] = useState(currencyState.currencyList[0]);
 
-  const [showDropMenu, setShowDropMenu] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   // Q2. 함수가 서로에게 의존되어 있는데 이럴땐 함수를 풀고 하나로 만드는게 괜찮을까?
@@ -33,17 +31,14 @@ const LandingPage = () => {
     dispatch(setRateLog(res));
   };
 
-  const getCheckRate = () => {
-    const rate = isRate(selectFrom, selectTo);
+  const getCheckRate = async () => {
+    const rate = await isRate(selectFrom, selectTo);
 
     if (rate === undefined) {
-      console.log("환율 정보 없어서 요청");
       if (loading) return;
       setLoading(true);
       runGetRate();
       setLoading(false);
-    } else {
-      console.log("환율 정보 있음");
     }
   };
 
@@ -89,7 +84,6 @@ const LandingPage = () => {
         <select
           value={selectFrom}
           onChange={(e) => {
-            console.log(e.target.value);
             setSelectFrom(e.target.value);
           }}
         >
